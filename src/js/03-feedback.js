@@ -26,8 +26,11 @@ function saveFormData(event) {
 formEl.addEventListener('submit', onFormSubmit);
 function onFormSubmit(event) {
     event.preventDefault();
-    console.log(localStorageData);
-    event.currentTarget.reset();
-    localStorage.removeItem(KEY_FORM);
+    if (inputEl.value.length === 0 || textareaEl.value.trim().length === 0) {
+        alert('fill out the form')
+    } else {
+        console.log(localStorageData);
+        event.currentTarget.reset();
+        localStorage.removeItem(KEY_FORM);
+    };  
 };
-
