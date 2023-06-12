@@ -5,14 +5,15 @@ const inputEl = document.querySelector('.feedback-form input');
 const textareaEl = document.querySelector('.feedback-form textarea');
 
 const KEY_FORM = "feedback-form-state";
-let localStorageData = {};
+
+let localStorageData = JSON.parse(localStorage.getItem(KEY_FORM)) ?? {};
 
 fillLocalStorageData();
 function fillLocalStorageData() {
-    const storageData = JSON.parse(localStorage.getItem(KEY_FORM));
-    if (storageData) {
-        inputEl.value = storageData.email;
-        textareaEl.value = storageData.message;
+    if (localStorageData.email) {
+        inputEl.value = localStorageData.email;
+    } if (localStorageData.message) {
+        textareaEl.value = localStorageData.message;
     }
 }
 
@@ -28,8 +29,11 @@ function onFormSubmit(event) {
     event.preventDefault();
     if (inputEl.value.length === 0 || textareaEl.value.trim().length === 0) {
         alert('fill out the form')
+        return
     } else {
         console.log(localStorageData);
+        localStorageData.email = '';
+        localStorageData.message = '';
         event.currentTarget.reset();
         localStorage.removeItem(KEY_FORM);
     };  
