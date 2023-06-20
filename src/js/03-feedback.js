@@ -27,7 +27,7 @@ function saveFormData(event) {
 formEl.addEventListener('submit', onFormSubmit);
 function onFormSubmit(event) {
     event.preventDefault();
-    if (inputEl.value.length === 0 || textareaEl.value.trim().length === 0) {
+    if (inputEl.value.trim().length === 0 || textareaEl.value.trim().length === 0) {
         alert('fill out the form')
         return
     } else {
